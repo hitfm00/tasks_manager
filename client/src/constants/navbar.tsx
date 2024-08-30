@@ -16,12 +16,13 @@ export const NAVBAR_LINKS = [
       {
         id: "current",
         title: "Поточні задачі",
-        href: "/tasks/current",
+        href: "/tasks?status=current",
         icon: <IconChevronRight />,
       },
       {
         id: "completed",
         title: "Виконані задачі",
+        href: "/tasks?status=completed",
         icon: <IconChevronRight />,
       },
     ],
