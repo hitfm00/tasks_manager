@@ -1,0 +1,41 @@
+.btnBase {
+  display: flex;
+  align-items: center;
+  padding: var(--mantine-spacing-xs);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 100ms ease;
+  width: 100%;
+  color: inherit;
+  gap: 10px;
+
+  color: #2d3b4b;
+
+  &:hover {
+    background: var(--mantine-color-blue-7);
+    color: #fff;
+
+    p {
+      color: #fff;
+    }
+  }
+}
+
+.categoryBtn {
+  @extend .btnBase;
+  justify-content: space-between;
+}
+
+.linkBtn {
+  @extend .btnBase;
+  gap: 10px;
+}
+
+.openedCategory {
+  background: var(--mantine-color-blue-7);
+  color: #fff;
+
+  p {
+    color: #fff;
+  }
+}
