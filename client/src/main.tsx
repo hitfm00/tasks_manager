@@ -1,10 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import Admin from "./pages/admin";
 import { MainLayout } from "./layouts/MainLayout";
 import MainPage from "./pages";
 import LoginPage from "./pages/login";
+
 
 const router = createBrowserRouter([
   {
