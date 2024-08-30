@@ -64,7 +64,25 @@ export default eslintTs.config(
       eqeqeq: 2,
       "no-console": 2,
       "react/jsx-first-prop-new-line": [2, "multiline"],
-      "import/order": [2, { "newlines-between": "always" }],
+      "import/order": [
+        2,
+        {
+          "newlines-between": "always",
+          groups: [
+            ["builtin", "external"],
+            "internal",
+            ["parent", "sibling", "index"],
+          ],
+          pathGroups: [
+            {
+              pattern: "@/**",
+              group: "internal",
+              position: "before",
+            },
+          ],
+          pathGroupsExcludedImportTypes: ["builtin"],
+        },
+      ],
       "import/newline-after-import": [2, { count: 2 }],
       "unused-imports/no-unused-imports": 2,
       "unused-imports/no-unused-vars": [
