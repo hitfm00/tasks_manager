@@ -1,3 +1,4 @@
+import "../styles/reset.scss";
 import "@mantine/core/styles.css";
 
 import { MantineProvider } from "@mantine/core";
@@ -11,5 +12,9 @@ type Props = {
 };
 
 export const MainLayout: FC<Props> = ({ children }) => {
-  return <MantineProvider theme={theme}>{children}</MantineProvider>;
+  return (
+    <MantineProvider theme={theme} withCssVariables>
+      {children}
+    </MantineProvider>
+  );
 };
