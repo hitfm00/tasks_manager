@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Box, Flex, Text } from "@mantine/core";
 import { IconMinus, IconPlus } from "@tabler/icons-react";
-import { Link } from "react-router-dom";
 import clsx from "clsx";
+import { Link } from "@tanstack/react-router";
 
 import css from "./NavbarItem.module.scss";
 
