@@ -1,4 +1,6 @@
-import { Paper, TextInput, PasswordInput, Button, Title } from "@mantine/core";
+import { Paper, Title } from "@mantine/core";
+
+import { LoginForm } from "@/forms/LoginForm";
 
 import classes from "./LoginScreen.module.scss";
 
@@ -10,17 +12,7 @@ export function LoginScreen() {
         <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
           Ласкаво просимо в Tasks Manager!
         </Title>
-
-        <TextInput label="Email" placeholder="admin@maincast.com" size="md" />
-        <PasswordInput
-          label="Password"
-          placeholder="Ваш пароль"
-          mt="md"
-          size="md"
-        />
-        <Button fullWidth mt="xl" size="md">
-          Увійти
-        </Button>
+        <LoginForm />
       </Paper>
     </div>
   );
