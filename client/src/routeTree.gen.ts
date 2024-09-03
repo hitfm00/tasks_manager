@@ -13,7 +13,8 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as TasksIndexImport } from './routes/tasks/index'
 import { Route as LoginIndexImport } from './routes/login/index'
-import { Route as TasksTaskIdImport } from './routes/tasks/$taskId'
+import { Route as TasksCreateIndexImport } from './routes/tasks/create/index'
+import { Route as TasksEditIdImport } from './routes/tasks/edit/$id'
 
 // Create/Update Routes
 
@@ -27,8 +28,13 @@ const LoginIndexRoute = LoginIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const TasksTaskIdRoute = TasksTaskIdImport.update({
-  path: '/tasks/$taskId',
+const TasksCreateIndexRoute = TasksCreateIndexImport.update({
+  path: '/tasks/create/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TasksEditIdRoute = TasksEditIdImport.update({
+  path: '/tasks/edit/$id',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -36,13 +42,6 @@ const TasksTaskIdRoute = TasksTaskIdImport.update({
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/tasks/$taskId': {
-      id: '/tasks/$taskId'
-      path: '/tasks/$taskId'
-      fullPath: '/tasks/$taskId'
-      preLoaderRoute: typeof TasksTaskIdImport
-      parentRoute: typeof rootRoute
-    }
     '/login/': {
       id: '/login/'
       path: '/login'
@@ -57,15 +56,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TasksIndexImport
       parentRoute: typeof rootRoute
     }
+    '/tasks/edit/$id': {
+      id: '/tasks/edit/$id'
+      path: '/tasks/edit/$id'
+      fullPath: '/tasks/edit/$id'
+      preLoaderRoute: typeof TasksEditIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/tasks/create/': {
+      id: '/tasks/create/'
+      path: '/tasks/create'
+      fullPath: '/tasks/create'
+      preLoaderRoute: typeof TasksCreateIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren({
-  TasksTaskIdRoute,
   LoginIndexRoute,
   TasksIndexRoute,
+  TasksEditIdRoute,
+  TasksCreateIndexRoute,
 })
 
 /* prettier-ignore-end */
@@ -76,19 +90,23 @@ export const routeTree = rootRoute.addChildren({
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/tasks/$taskId",
         "/login/",
-        "/tasks/"
+        "/tasks/",
+        "/tasks/edit/$id",
+        "/tasks/create/"
       ]
-    },
-    "/tasks/$taskId": {
-      "filePath": "tasks/$taskId.tsx"
     },
     "/login/": {
       "filePath": "login/index.tsx"
     },
     "/tasks/": {
       "filePath": "tasks/index.tsx"
+    },
+    "/tasks/edit/$id": {
+      "filePath": "tasks/edit/$id.tsx"
+    },
+    "/tasks/create/": {
+      "filePath": "tasks/create/index.tsx"
     }
   }
 }

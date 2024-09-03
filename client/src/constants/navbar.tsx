@@ -1,4 +1,9 @@
-import { IconChevronRight, IconHome, IconList } from "@tabler/icons-react";
+import {
+  IconChevronRight,
+  IconHome,
+  IconList,
+  IconPlus,
+} from "@tabler/icons-react";
 
 
 export const NAVBAR_LINKS = [
@@ -14,15 +19,16 @@ export const NAVBAR_LINKS = [
     icon: <IconList />,
     links: [
       {
-        id: "current",
-        title: "Поточні задачі",
-        href: "/tasks?status=current",
-        icon: <IconChevronRight />,
+        id: "add",
+        title: "Додати задачу",
+        href: "/tasks/create",
+        icon: <IconPlus />,
       },
+
       {
-        id: "completed",
-        title: "Виконані задачі",
-        href: "/tasks?status=completed",
+        id: "all",
+        title: "Всі задачі",
+        href: "/tasks",
         icon: <IconChevronRight />,
       },
     ],

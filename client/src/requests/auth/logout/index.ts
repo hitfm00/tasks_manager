@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
+import { showNotification } from "@mantine/notifications";
 
-import api from "@/requests/api";
+import { api } from "@/requests/api";
 
 
 export const logoutFetch = async () => {
@@ -12,8 +13,23 @@ export const useLogout = () => {
   return useMutation({
     mutationKey: ["auth:logout"],
     mutationFn: logoutFetch,
-    onError: (error) => {
-      console.error(error);
+    onSuccess: () => {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      localStorage.removeItem("tokenExpires");
+
+      window.location.href = "/login";
+
+      showNotification({
+        type: "success",
+        message: "Ви успішно вийшли з системи!",
+      });
+    },
+    onError: () => {
+      showNotification({
+        type: "error",
+        message: "Щось пішло не так! Спробуйте пізніше.",
+      });
     },
   });
 };

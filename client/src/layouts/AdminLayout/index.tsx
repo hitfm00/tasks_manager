@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Paper } from "@mantine/core";
 
 import { AppShell } from "../../widgets/AppShell";
 
@@ -8,5 +9,11 @@ type Props = {
 };
 
 export const AdminLayout: FC<Props> = ({ children }) => {
-  return <AppShell>{children}</AppShell>;
+  return (
+    <AppShell>
+      <Paper shadow="lg" ml="md" p="md" radius="lg">
+        {children}
+      </Paper>
+    </AppShell>
+  );
 };

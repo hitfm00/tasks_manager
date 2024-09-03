@@ -4,15 +4,23 @@ import { api } from "@/requests/api";
 import { showNotification } from "@/helpers/notification";
 
 
-export const fetchAllTasks = async () => {
-  const response = await api.get("/tasks?limit=10&page=1&order=ASC");
+type PropsTaskType = {
+  completed: boolean;
+};
+
+export const fetchAllTasks = async (props: PropsTaskType) => {
+  const response = await api.get(`/tasks?limit=10&page=1&order=ASC`, {
+    params: {
+      completed: props.completed,
+    },
+  });
   return response.data;
 };
 
-export const useTasks = () => {
+export const useTasks = (props: PropsTaskType) => {
   const data = useQuery({
-    queryKey: ["tasks:all"],
-    queryFn: fetchAllTasks,
+    queryKey: ["tasks:all", props.completed],
+    queryFn: () => fetchAllTasks(props),
   });
   if (data.isError) {
     showNotification({

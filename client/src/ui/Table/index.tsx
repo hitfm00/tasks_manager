@@ -6,17 +6,43 @@ import {
   ColumnDef,
 } from "@tanstack/react-table";
 
+import { ElementActions } from "../ElementActions";
+
+
+export type TableActionsProps = {
+  onEdit?: (element: unknown) => void;
+  onDelete?: (element: unknown) => void;
+  onInfo?: (element: unknown) => void;
+};
+
+type TableProps<T> = {
+  data: T[];
+  columns: ColumnDef<T>[];
+  actions?: TableActionsProps;
+};
 
 export const Table = <T extends object>({
   data,
   columns,
-}: {
-  data: T[];
-  columns: ColumnDef<T, keyof T>[];
-}) => {
+  actions,
+}: TableProps<T>) => {
+  const tableColumns = actions
+    ? [
+        ...columns,
+
+        {
+          id: "actions",
+          header: "Actions",
+          cell: (info) => (
+            <ElementActions actions={actions} element={info.row.original} />
+          ),
+        } as ColumnDef<T, unknown>,
+      ]
+    : columns;
+
   const table = useReactTable<T>({
     data,
-    columns,
+    columns: tableColumns,
     getCoreRowModel: getCoreRowModel(),
   });
 

@@ -18,14 +18,9 @@ export const LoginForm = () => {
   const navigate = useNavigate(); // Получаем функцию для навигации
 
   const onSubmit: SubmitHandler<LoginSchemaType> = async (data) => {
-    try {
-      await login(data);
+    await login(data);
 
-      // Редирект после успешного логина
-      navigate({ to: "/tasks" });
-    } catch (e) {
-      console.log(e);
-    }
+    navigate({ to: "/tasks" });
   };
 
   return (
