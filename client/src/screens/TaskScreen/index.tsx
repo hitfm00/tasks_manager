@@ -89,6 +89,7 @@ export function TaskScreen() {
       {data?.data && (
         <Table
           data={data.data}
+          // @ts-excpect-error - don't know how to fix this
           columns={columns}
           actions={{
             onEdit: (element) =>

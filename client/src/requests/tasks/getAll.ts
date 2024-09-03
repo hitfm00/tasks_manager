@@ -5,7 +5,7 @@ import { showNotification } from "@/helpers/notification";
 
 
 type PropsTaskType = {
-  completed: boolean;
+  completed?: boolean;
 };
 
 export const fetchAllTasks = async (props: PropsTaskType) => {

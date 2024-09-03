@@ -8,7 +8,7 @@ type CreateTaskBody = {
   title: string;
   completed: boolean;
   slug: string;
-  content?: string;
+  content?: string | null;
 };
 
 export const fetchCreateTask = async (body: CreateTaskBody) => {

@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  task-manager-client:
+    image: task-manager-client
+    container_name: task-manager-client
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env.docker
+    environment:
+      NODE_ENV: production
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./:/app
+      - node_modules:/app/node_modules
+volumes:
+  node_modules:
+

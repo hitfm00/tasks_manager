@@ -8,7 +8,7 @@ type UpdateTaskBody = {
   title: string;
   completed: boolean;
   slug: string;
-  content?: string;
+  content?: string | null;
 };
 
 export const fetchUpdateTask = async ({

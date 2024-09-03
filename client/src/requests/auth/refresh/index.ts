@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 
-import api from "@/requests/api";
+import { api } from "@/requests/api";
 
 
 type RefreshBody = {
@@ -17,7 +17,11 @@ export const useRefreshToken = () => {
     mutationKey: ["auth:refresh"],
     mutationFn: refreshTokenFetch,
     onError: (error) => {
-      console.error(error);
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("tokenExpires");
+      localStorage.removeItem("refreshToken");
+      window.location.href = "/login";
+      return Promise.reject(error);
     },
   });
 };

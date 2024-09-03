@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { AdminLayout } from "@/layouts/AdminLayout";
 import { CreateTaskScreen } from "@/screens/CreateTaskScreen";
+import { checkAuth } from "@/utils/checkAuth";
 
 
 export const Route = createFileRoute("/tasks/create/")({
@@ -10,4 +11,5 @@ export const Route = createFileRoute("/tasks/create/")({
       <CreateTaskScreen />
     </AdminLayout>
   ),
+  beforeLoad: checkAuth,
 });
